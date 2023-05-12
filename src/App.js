@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Paper, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Card, CardContent, CardActionArea } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-
 
 const tickets = [
   { id: 1, name: 'Emily Davis' },
@@ -59,7 +58,7 @@ function App() {
         </AppBar>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            <Paper sx={{ p: 3, color: 'text.secondary' }}>
+            <Card sx={{ p: 3, color: 'text.secondary' }}>
               <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Ticket Details</Typography>
               {activeTicket ? (
                 <Box mt={3}>
@@ -93,14 +92,12 @@ function App() {
                     margin="normal"
                   />
                   <Box mt={3} display="flex" justifyContent="space-between">
-                    <IconButton variant="contained" color="primary" style={{ marginRight: '10px' }}>
-                      <CloseIcon />
+                    <Button variant="contained" color="primary" style={{ marginRight: '10px' }} startIcon={<CloseIcon />}>
                       Close Ticket
-                    </IconButton>
-                    <IconButton variant="contained" color="secondary">
-                      <ContactMailIcon />
+                    </Button>
+                    <Button variant="contained" color="secondary" startIcon={<ContactMailIcon />}>
                       Contact Customer
-                    </IconButton>
+                    </Button>
                   </Box>
                 </Box>                        
               ) : (
@@ -108,21 +105,23 @@ function App() {
                   <Typography sx={{ fontWeight: 500 }}>Select a ticket to view details</Typography>
                 </Box>
               )}
-            </Paper>
+            </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 3, color: 'text.secondary' }}>
+            <Card sx={{ p: 3, color: 'text.secondary' }}>
               <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Open Tickets</Typography>
               <Box mt={3}>
-                <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                  {tickets.map((ticket) => (
-                    <ListItem button key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
-                      <ListItemText primary={ticket.name} sx={{ fontWeight: 500 }}/>
-                    </ListItem>
-                  ))}
-                </List>
+                {tickets.map((ticket) => (
+                  <Card sx={{ mb: 2 }} key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
+                    <CardActionArea>
+                      <CardContent>
+                        <Typography variant="h6" sx={{ fontWeight: 500 }}>{ticket.name}</Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                ))}
               </Box>
-            </Paper>
+            </Card>
           </Grid>
         </Grid>
       </Box>
