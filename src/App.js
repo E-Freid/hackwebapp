@@ -52,18 +52,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Box>
-        <AppBar position="static" sx={{ mb: 4 }}>
+        <AppBar position="static" sx={{ mb: 5 }}>
           <Toolbar>
-            <Typography variant="h6">Customer Support Dashboard</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 600 }}>Customer Support Dashboard</Typography>
           </Toolbar>
         </AppBar>
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            <Paper sx={{ p: 2, color: 'text.secondary' }}>
-              <Typography variant="h6">Ticket Details</Typography>
+            <Paper sx={{ p: 3, color: 'text.secondary' }}>
+              <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Ticket Details</Typography>
               {activeTicket ? (
-                <Box mt={2}>
-                  <Typography variant="subtitle1">AI Ticket Summary</Typography>
+                <Box mt={3}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Ticket Summary</Typography>
                   <TextField
                     fullWidth
                     multiline
@@ -73,7 +73,7 @@ function App() {
                     margin="normal"
                   />
                   
-                  <Typography variant="subtitle1">AI Suggested Technical Solution</Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Suggested Technical Solution</Typography>
                   <TextField
                     fullWidth
                     multiline
@@ -83,7 +83,7 @@ function App() {
                     margin="normal"
                   />
                   
-                  <Typography variant="subtitle1">AI Personalization Suggestions</Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Personalization Suggestions</Typography>
                   <TextField
                     fullWidth
                     multiline
@@ -92,7 +92,7 @@ function App() {
                     value={activeTicket.messages[2]}
                     margin="normal"
                   />
-                  <Box mt={2} display="flex" justifyContent="space-between">
+                  <Box mt={3} display="flex" justifyContent="space-between">
                     <IconButton variant="contained" color="primary" style={{ marginRight: '10px' }}>
                       <CloseIcon />
                       Close Ticket
@@ -104,20 +104,20 @@ function App() {
                   </Box>
                 </Box>                        
               ) : (
-                <Box mt={2}>
-                  <Typography>Select a ticket to view details</Typography>
+                <Box mt={3}>
+                  <Typography sx={{ fontWeight: 500 }}>Select a ticket to view details</Typography>
                 </Box>
               )}
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 2, color: 'text.secondary' }}>
-              <Typography variant="h6">Tickets</Typography>
-              <Box mt={2}>
+            <Paper sx={{ p: 3, color: 'text.secondary' }}>
+              <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Open Tickets</Typography>
+              <Box mt={3}>
                 <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                   {tickets.map((ticket) => (
                     <ListItem button key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
-                      <ListItemText primary={ticket.name} />
+                      <ListItemText primary={ticket.name} sx={{ fontWeight: 500 }}/>
                     </ListItem>
                   ))}
                 </List>
