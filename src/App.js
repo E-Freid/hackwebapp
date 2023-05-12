@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Box, Grid, TextField, Paper, List, ListItem, ListItemText } from '@mui/material';
+import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Paper, List, ListItem, ListItemText } from '@mui/material';
 
 const tickets = [
   { id: 1, name: 'Emily Davis' },
@@ -76,6 +76,10 @@ function App() {
                   value={activeTicket.messages[2]}
                   margin="normal"
                 />
+                <Box mt={2}>
+                  <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>Close Ticket</Button>
+                  <Button variant="contained" color="secondary">Contact Customer</Button>
+                </Box>
               </Box>                        
             ) : (
               <Box mt={2}>
