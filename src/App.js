@@ -112,7 +112,11 @@ function App() {
               <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Open Tickets</Typography>
               <Box mt={3}>
                 {tickets.map((ticket) => (
-                  <Card sx={{ mb: 2 }} key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
+                  <Card 
+                    sx={{ mb: 2, border: (ticket.id === activeTicket?.id) ? '2px solid #884eb9' : 'none'}} 
+                    key={ticket.id} 
+                    onClick={() => handleTicketClick(ticket.id)}
+                  >
                     <CardActionArea>
                       <CardContent>
                         <Typography variant="h6" sx={{ fontWeight: 500 }}>{ticket.name}</Typography>
@@ -127,6 +131,7 @@ function App() {
       </Box>
     </ThemeProvider>
   );
+
   
 };
 
