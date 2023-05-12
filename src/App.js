@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Card, CardContent, CardActionArea } from '@mui/material';
+import {Divider, Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Card, CardContent, CardActionArea } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -62,7 +62,7 @@ function App() {
               <Typography variant="h6" sx={{ mt: 3, fontWeight: 600 }}>Ticket Details</Typography>
               {activeTicket ? (
                 <Box mt={3}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Ticket Summary</Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 800, mb: 1 }}>AI Ticket Summary</Typography>
                   <TextField
                     fullWidth
                     multiline
@@ -71,8 +71,8 @@ function App() {
                     value={activeTicket.messages[0]}
                     margin="normal"
                   />
-                  
-                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Suggested Technical Solution</Typography>
+                  <Divider>AI Suggestions</Divider>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 400, mb: 1 }}>AI Suggested Technical Solution</Typography>
                   <TextField
                     fullWidth
                     multiline
@@ -80,9 +80,10 @@ function App() {
                     variant="outlined"
                     value={activeTicket.messages[1]}
                     margin="normal"
+                    
                   />
                   
-                  <Typography variant="subtitle1" sx={{ fontWeight: 500, mb: 1 }}>AI Personalization Suggestions</Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 400, mb: 1 }}>AI Personalization Suggestions</Typography>
                   <TextField
                     fullWidth
                     multiline
