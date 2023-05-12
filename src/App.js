@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Paper, List, ListItem, ListItemText } from '@mui/material';
+import { Button, AppBar, Toolbar, Typography, Box, Grid, TextField, Paper, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+
 
 const tickets = [
   { id: 1, name: 'Emily Davis' },
@@ -10,6 +14,17 @@ const tickets = [
   { id: 6, name: 'Omer Mualem' },
   { id: 7, name: 'Revital mutuko' },
 ];
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#884eb9',
+    },
+    secondary: {
+      main: '#C4321e',
+    },
+  },
+});
 
 function App() {
   const [activeTicket, setActiveTicket] = useState(null);
@@ -35,76 +50,85 @@ function App() {
   };
 
   return (
-    <Box>
-      <AppBar position="static" sx={{ mb: 4 }}>
-        <Toolbar>
-          <Typography variant="h6">Customer Support Dashboard</Typography>
-        </Toolbar>
-      </AppBar>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
-          <Paper sx={{ p: 2, color: 'text.secondary' }}>
-            <Typography variant="h6">Ticket Details</Typography>
-            {activeTicket ? (
-              <Box mt={2}>
-                <Typography variant="subtitle1">AI Ticket Summary</Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={10}
-                  variant="outlined"
-                  value={activeTicket.messages[0]}
-                  margin="normal"
-                />
-                
-                <Typography variant="subtitle1">AI Suggested Technical Solution</Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={10}
-                  variant="outlined"
-                  value={activeTicket.messages[1]}
-                  margin="normal"
-                />
-                
-                <Typography variant="subtitle1">AI Personalization Suggestions</Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={10}
-                  variant="outlined"
-                  value={activeTicket.messages[2]}
-                  margin="normal"
-                />
+    <ThemeProvider theme={theme}>
+      <Box>
+        <AppBar position="static" sx={{ mb: 4 }}>
+          <Toolbar>
+            <Typography variant="h6">Customer Support Dashboard</Typography>
+          </Toolbar>
+        </AppBar>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={8}>
+            <Paper sx={{ p: 2, color: 'text.secondary' }}>
+              <Typography variant="h6">Ticket Details</Typography>
+              {activeTicket ? (
                 <Box mt={2}>
-                  <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>Close Ticket</Button>
-                  <Button variant="contained" color="secondary">Contact Customer</Button>
+                  <Typography variant="subtitle1">AI Ticket Summary</Typography>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={10}
+                    variant="outlined"
+                    value={activeTicket.messages[0]}
+                    margin="normal"
+                  />
+                  
+                  <Typography variant="subtitle1">AI Suggested Technical Solution</Typography>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={10}
+                    variant="outlined"
+                    value={activeTicket.messages[1]}
+                    margin="normal"
+                  />
+                  
+                  <Typography variant="subtitle1">AI Personalization Suggestions</Typography>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={10}
+                    variant="outlined"
+                    value={activeTicket.messages[2]}
+                    margin="normal"
+                  />
+                  <Box mt={2} display="flex" justifyContent="space-between">
+                    <IconButton variant="contained" color="primary" style={{ marginRight: '10px' }}>
+                      <CloseIcon />
+                      Close Ticket
+                    </IconButton>
+                    <IconButton variant="contained" color="secondary">
+                      <ContactMailIcon />
+                      Contact Customer
+                    </IconButton>
+                  </Box>
+                </Box>                        
+              ) : (
+                <Box mt={2}>
+                  <Typography>Select a ticket to view details</Typography>
                 </Box>
-              </Box>                        
-            ) : (
+              )}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ p: 2, color: 'text.secondary' }}>
+              <Typography variant="h6">Tickets</Typography>
               <Box mt={2}>
-                <Typography>Select a ticket to view details</Typography>
+                <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                  {tickets.map((ticket) => (
+                    <ListItem button key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
+                      <ListItemText primary={ticket.name} />
+                    </ListItem>
+                  ))}
+                </List>
               </Box>
-            )}
-          </Paper>
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 2, color: 'text.secondary' }}>
-            <Typography variant="h6">Tickets</Typography>
-            <Box mt={2}>
-              <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                {tickets.map((ticket) => (
-                  <ListItem button key={ticket.id} onClick={() => handleTicketClick(ticket.id)}>
-                    <ListItemText primary={ticket.name} />
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </ThemeProvider>
   );
+  
 };
 
 export default App;
